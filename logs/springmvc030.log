@@ -58,3 +58,17 @@
 2025-11-15 12:38:54 [http-nio-8081-exec-2] DEBUG c.e.s.j.m.DepartmentMapper.queryAll - ==> Parameters: 
 2025-11-15 12:38:55 [http-nio-8081-exec-2] DEBUG c.e.s.j.m.DepartmentMapper.queryAll - <==      Total: 9
 2025-11-15 12:38:55 [http-nio-8081-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@428692f7]
+2025-11-15 13:55:34 [http-nio-8081-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-11-15 13:55:34 [http-nio-8081-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@c45ea41] was not registered for synchronization because synchronization is not active
+2025-11-15 13:55:34 [http-nio-8081-exec-5] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [ConnectionProxyImpl{connectedTime=2025-11-15 13:55:34.726, closeCount=0, lastValidateTimeMillis=2025-11-15 13:55:34.73}] will not be managed by Spring
+2025-11-15 13:55:34 [http-nio-8081-exec-5] DEBUG c.e.s.j.m.DepartmentMapper.queryAll - ==>  Preparing: select * from department order by dept_id
+2025-11-15 13:55:34 [http-nio-8081-exec-5] DEBUG c.e.s.j.m.DepartmentMapper.queryAll - ==> Parameters: 
+2025-11-15 13:55:34 [http-nio-8081-exec-5] DEBUG c.e.s.j.m.DepartmentMapper.queryAll - <==      Total: 9
+2025-11-15 13:55:34 [http-nio-8081-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@c45ea41]
+2025-11-15 15:02:02 [http-nio-8081-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2025-11-15 15:02:02 [http-nio-8081-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@575e56a1] was not registered for synchronization because synchronization is not active
+2025-11-15 15:02:02 [http-nio-8081-exec-6] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [ConnectionProxyImpl{connectedTime=2025-11-15 15:02:02.427, closeCount=0, lastValidateTimeMillis=2025-11-15 15:02:02.43}] will not be managed by Spring
+2025-11-15 15:02:02 [http-nio-8081-exec-6] DEBUG c.e.s.j.m.DepartmentMapper.queryAll - ==>  Preparing: select * from department order by dept_id
+2025-11-15 15:02:02 [http-nio-8081-exec-6] DEBUG c.e.s.j.m.DepartmentMapper.queryAll - ==> Parameters: 
+2025-11-15 15:02:02 [http-nio-8081-exec-6] DEBUG c.e.s.j.m.DepartmentMapper.queryAll - <==      Total: 9
+2025-11-15 15:02:02 [http-nio-8081-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@575e56a1]
