@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+     <settings>
+        <setting name="logImpl" value="SLF4J"/>
+    </settings>
+   <typeAliases>
+       <typeAlias type="java.lang.String" alias="String"/>
+       <typeAlias type="java.lang.Integer" alias="Integer"/>
+       <typeAlias type="cn.edu.sju.jee.model.Department" alias="Department"/>
+       <typeAlias type="cn.edu.sju.jee.model.Position" alias="Position"/>
+       <typeAlias type="cn.edu.sju.jee.model.Employee" alias="Employee"/>
+       <typeAlias type="cn.edu.sju.jee.model.Attendance" alias="Attendance"/>
+       <typeAlias type="cn.edu.sju.jee.model.dto.EmployeeQueryParam" alias="EmployeeQueryParam"/>
+   </typeAliases>
+    <mappers>
+        <mapper resource="mapper/LoginMapper.xml"/>
+        <mapper resource="mapper/DepartmentMapper.xml"/>
+        <mapper resource="mapper/PositionMapper.xml"/>
+        <mapper resource="mapper/EmployeeMapper.xml"/>
+        <mapper resource="mapper/AttendanceMapper.xml"/>
+    </mappers>
+</configuration>
+

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.sju.jee.mapper.AttendanceMapper">
+    <resultMap id="BaseResultMap" type="cn.edu.sju.jee.model.Attendance">
+        <id column="att_id" property="attId"/>
+        <result column="emp_id" property="empId"/>
+        <result column="check_in" property="checkIn"/>
+        <result column="check_out" property="checkOut"/>
+        <result column="status" property="status"/>
+        <result column="remark" property="remark"/>
+        <result column="create_time" property="createTime"/>
+        <association property="employee"
+                     javaType="cn.edu.sju.jee.model.Employee"
+                     column="emp_id"
+                     select="cn.edu.sju.jee.mapper.EmployeeMapper.queryById">
+        </association>
+    </resultMap>
+
+    <select id="queryAll" resultMap="BaseResultMap">
+        select * from attendance order by att_id desc
+    </select>
+    
+    <insert id="add" parameterType="cn.edu.sju.jee.model.Attendance">
+        insert into attendance (emp_id, check_in, check_out, status, remark, create_time)
+        values(#{empId}, #{checkIn}, #{checkOut}, #{status}, #{remark}, now())
+    </insert>
+    
+    <delete id="deleteById" parameterType="Integer">
+        delete from attendance where att_id=#{attId}
+    </delete>
+    
+    <select id="queryById" parameterType="Integer" resultMap="BaseResultMap">
+        select * from attendance where att_id=#{attId}
+    </select>
+    
+    <update id="update" parameterType="cn.edu.sju.jee.model.Attendance">
+        update attendance set emp_id=#{empId}, check_in=#{checkIn}, check_out=#{checkOut}, 
+        status=#{status}, remark=#{remark}
+        where att_id=#{attId}
+    </update>
+    
+    <select id="queryByEmpId" parameterType="Integer" resultMap="BaseResultMap">
+        select * from attendance where emp_id=#{empId} order by att_id desc
+    </select>
+    
+    <delete id="deleteByEmpId" parameterType="Integer">
+        delete from attendance where emp_id=#{empId}
+    </delete>
+</mapper> 

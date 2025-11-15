@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.sju.jee.mapper.PositionMapper">
+    <resultMap id="BaseResultMap" type="cn.edu.sju.jee.model.Position">
+        <id column="pos_id" property="posId"/>
+        <result column="pos_name" property="posName"/>
+        <result column="pos_desc" property="posDesc"/>
+        <result column="dept_id" property="deptId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <association property="department"
+                     javaType="cn.edu.sju.jee.model.Department"
+                     column="dept_id"
+                     select="cn.edu.sju.jee.mapper.DepartmentMapper.queryById">
+        </association>
+    </resultMap>
+
+    <select id="queryAll" resultMap="BaseResultMap">
+        select * from positions order by pos_id
+    </select>
+    
+    <insert id="add" parameterType="cn.edu.sju.jee.model.Position">
+        insert into positions (pos_name, pos_desc, dept_id, create_time, update_time)
+        values(#{posName}, #{posDesc}, #{deptId}, now(), now())
+    </insert>
+    
+    <delete id="deleteById" parameterType="Integer">
+        delete from positions where pos_id=#{posId}
+    </delete>
+    
+    <select id="queryById" parameterType="Integer" resultMap="BaseResultMap">
+        select * from positions where pos_id=#{posId}
+    </select>
+    
+    <update id="update" parameterType="cn.edu.sju.jee.model.Position">
+        update positions set pos_name=#{posName}, pos_desc=#{posDesc}, dept_id=#{deptId}, update_time=now()
+        where pos_id=#{posId}
+    </update>
+    
+    <select id="queryByDeptId" parameterType="Integer" resultMap="BaseResultMap">
+        select * from positions where dept_id=#{deptId} order by pos_id
+    </select>
+</mapper> 

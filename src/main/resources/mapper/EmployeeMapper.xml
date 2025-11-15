@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.sju.jee.mapper.EmployeeMapper">
+    <resultMap id="BaseResultMap" type="cn.edu.sju.jee.model.Employee">
+        <id column="emp_id" property="empId"/>
+        <result column="emp_name" property="empName"/>
+        <result column="gender" property="gender"/>
+        <result column="id_card" property="idCard"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+        <result column="address" property="address"/>
+        <result column="dept_id" property="deptId"/>
+        <result column="pos_id" property="posId"/>
+        <result column="entry_date" property="entryDate"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <association property="department"
+                     javaType="cn.edu.sju.jee.model.Department"
+                     column="dept_id"
+                     select="cn.edu.sju.jee.mapper.DepartmentMapper.queryById">
+        </association>
+        <association property="position"
+                     javaType="cn.edu.sju.jee.model.Position"
+                     column="pos_id"
+                     select="cn.edu.sju.jee.mapper.PositionMapper.queryById">
+        </association>
+    </resultMap>
+
+    <select id="queryAll" resultMap="BaseResultMap">
+        select * from employee order by emp_id
+    </select>
+    
+    <insert id="add" parameterType="cn.edu.sju.jee.model.Employee">
+        insert into employee (emp_name, gender, id_card, phone, email, address, dept_id, pos_id, entry_date, status, create_time, update_time)
+        values(#{empName}, #{gender}, #{idCard}, #{phone}, #{email}, #{address}, #{deptId}, #{posId}, #{entryDate}, #{status}, now(), now())
+    </insert>
+    
+    <delete id="deleteById" parameterType="Integer">
+        delete from employee where emp_id=#{empId}
+    </delete>
+    
+    <select id="queryById" parameterType="Integer" resultMap="BaseResultMap">
+        select * from employee where emp_id=#{empId}
+    </select>
+    
+    <update id="update" parameterType="cn.edu.sju.jee.model.Employee">
+        update employee set emp_name=#{empName}, gender=#{gender}, id_card=#{idCard}, 
+        phone=#{phone}, email=#{email}, address=#{address}, dept_id=#{deptId}, 
+        pos_id=#{posId}, entry_date=#{entryDate}, status=#{status}, update_time=now()
+        where emp_id=#{empId}
+    </update>
+    
+    <select id="queryByIdCard" parameterType="String" resultMap="BaseResultMap">
+        select * from employee where id_card=#{idCard}
+    </select>
+    
+    <delete id="deleteByIdCard" parameterType="String">
+        delete from employee where id_card=#{idCard}
+    </delete>
+    
+    <select id="queryByCondition" parameterType="cn.edu.sju.jee.model.dto.EmployeeQueryParam" resultMap="BaseResultMap">
+        select * from employee
+        <where>
+            <if test="empName != null and empName != ''">
+                and emp_name like concat('%', #{empName}, '%')
+            </if>
+            <if test="idCard != null and idCard != ''">
+                and id_card = #{idCard}
+            </if>
+            <if test="phone != null and phone != ''">
+                and phone = #{phone}
+            </if>
+            <if test="deptId != null">
+                and dept_id = #{deptId}
+            </if>
+            <if test="posId != null">
+                and pos_id = #{posId}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="startDate != null">
+                and entry_date >= #{startDate}
+            </if>
+            <if test="endDate != null">
+                and entry_date <![CDATA[<=]]> #{endDate}
+            </if>
+        </where>
+        order by emp_id
+    </select>
+    
+    <select id="queryByDeptId" parameterType="Integer" resultMap="BaseResultMap">
+        select * from employee where dept_id=#{deptId}
+    </select>
+</mapper>
